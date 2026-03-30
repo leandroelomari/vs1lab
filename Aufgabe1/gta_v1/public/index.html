@@ -6,9 +6,35 @@
 
 <script>
 function validate_tag() {
+/* ... your code here ... */
     let tag_name = document.forms["tag-form"]["tag_name"].value;
+    if (tag_name == "") {
+        alert("name cannot be empty");
+        return false;
+    } else if (tag_name.length > 10) {
+        alert("name cannot be longer than 10 characters");
+        return false;
+    }
     let tag_tag = document.forms["tag-form"]["tag_tag"].value;
-    
+    if (tag_tag[0] != '#') {
+        alert("tag needs to start with #");
+        return false;
+    } else if (tag_tag.length > 11) { //# + 10
+        alert("tag cannot be longer than 10 characters");
+        return false
+    }
+}
+
+function validate_discovery() {
+/* ... your code here ... */
+    let tag_name = document.forms["discoveryFilterForm"]["discovery_name"].value;
+    if (tag_name == "") {
+        alert("name cannot be empty");
+        return false;
+    } else if (tag_name.length > 10) {
+        alert("name cannot be longer than 10 characters");
+        return false;
+    }
 }
 </script>
 
@@ -31,14 +57,14 @@ function validate_tag() {
 
     <main class="main">
         <section class="main__tagging tagging">
-            <!-- <h2>Tagging</h2> -->
+            <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">
+            <form id="tag-form" action="/tagging" method="post" onsubmit="return validate_tag()">
 
                 <!-- ... your code here ... -->
                 <fieldset class="tagging_fieldset">
-                    <legend>Tagging</legend>
+                    <legend>Add a new GeoTag</legend>
                     <label>Latitude</label>
                     <input type="text" id="tag_laditude" placeholder="1234" disabled>
                     <label>Longitude</label>
@@ -56,19 +82,21 @@ function validate_tag() {
         </section>
 
         <section class="main__discovery discovery">
-            <!-- <h2 class="discovery__title">Discovery</h2> -->
+            <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post" onsubmit="return validate_discovery()">
 
                 <!-- ... your code here ... -->
-                <fieldset>
-                    <legend>Discovery</legend>
-                    <label>Name</label>
-                    <input type="text" id="discovery_name" placeholder="e.g. HKA">
-                    <input type="submit" value="Search">
+                <fieldset class="discovery_fieldset">
+                    <legend>Search</legend>
+                    <div class="discovery_inputs">
+                        <label>Search term or keywords:</label>
+                        <input type="text" id="discovery_name" placeholder="e.g. HKA">
+                        <input type="submit" value="Search">
+                    </div>
+                    <div class="discovery__spacer"></div>
                 </fieldset>
-
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
