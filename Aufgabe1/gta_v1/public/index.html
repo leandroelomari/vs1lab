@@ -4,6 +4,14 @@
 
 <html lang="en">
 
+<script>
+function validate_tag() {
+    let tag_name = document.forms["tag-form"]["tag_name"].value;
+    let tag_tag = document.forms["tag-form"]["tag_tag"].value;
+    
+}
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,12 +31,24 @@
 
     <main class="main">
         <section class="main__tagging tagging">
-            <h2>Tagging</h2>
+            <!-- <h2>Tagging</h2> -->
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
 
                 <!-- ... your code here ... -->
+                <fieldset class="tagging_fieldset">
+                    <legend>Tagging</legend>
+                    <label>Latitude</label>
+                    <input type="text" id="tag_laditude" placeholder="1234" disabled>
+                    <label>Longitude</label>
+                    <input type="text" id="tag_longitude" placeholder="5678" disabled>
+                    <label>Name</label>
+                    <input type="text" id="tag_name" placeholder="e.g. HKA">
+                    <label>Hashtag</label>
+                    <input type="text" id="tag_tag" placeholder="e.g. #edu">
+                    <input type="submit" value="Add Tag">
+                </fieldset>
 
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
@@ -36,12 +56,18 @@
         </section>
 
         <section class="main__discovery discovery">
-            <h2 class="discovery__title">Discovery</h2>
+            <!-- <h2 class="discovery__title">Discovery</h2> -->
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
                 <!-- ... your code here ... -->
+                <fieldset>
+                    <legend>Discovery</legend>
+                    <label>Name</label>
+                    <input type="text" id="discovery_name" placeholder="e.g. HKA">
+                    <input type="submit" value="Search">
+                </fieldset>
 
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->

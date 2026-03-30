@@ -113,13 +113,19 @@ a {
 
 
 /* ### TODO ### Styles for Main Component */
-
+.main {
+  display: flex;
+  flex-direction: row;
+}
 /* ... your code here ... */
 
 
 /* ### TODO ### Styles for Tagging component */
-
 /* ... your code here ... */
+.tagging_fieldset {
+  display: flex;
+  flex-direction: column;
+}
 
 
 /* ### TODO ### Styles for Discovery component */
