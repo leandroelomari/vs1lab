@@ -4,40 +4,6 @@
 
 <html lang="en">
 
-<script>
-function validate_tag() {
-/* ... your code here ... */
-    let tag_name = document.forms["tag-form"]["tag_name"].value;
-    if (tag_name == "") {
-        alert("name cannot be empty");
-        return false;
-    } else if (tag_name.length > 10) {
-        alert("name cannot be longer than 10 characters");
-        return false;
-    }
-    let tag_tag = document.forms["tag-form"]["tag_tag"].value;
-    if (tag_tag[0] != '#') {
-        alert("tag needs to start with #");
-        return false;
-    } else if (tag_tag.length > 11) { //# + 10
-        alert("tag cannot be longer than 10 characters");
-        return false
-    }
-}
-
-function validate_discovery() {
-/* ... your code here ... */
-    let tag_name = document.forms["discoveryFilterForm"]["discovery_name"].value;
-    if (tag_name == "") {
-        alert("name cannot be empty");
-        return false;
-    } else if (tag_name.length > 10) {
-        alert("name cannot be longer than 10 characters");
-        return false;
-    }
-}
-</script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,22 +26,19 @@ function validate_discovery() {
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post" onsubmit="return validate_tag()">
-
-                <!-- ... your code here ... -->
-                <fieldset class="tagging_fieldset">
-                    <legend>Add a new GeoTag</legend>
-                    <label>Latitude</label>
-                    <input type="text" id="tag_laditude" placeholder="1234" disabled>
-                    <label>Longitude</label>
-                    <input type="text" id="tag_longitude" placeholder="5678" disabled>
-                    <label>Name</label>
-                    <input type="text" id="tag_name" placeholder="e.g. HKA">
-                    <label>Hashtag</label>
-                    <input type="text" id="tag_tag" placeholder="e.g. #edu">
-                    <input type="submit" value="Add Tag">
+            <form id="tag-form" action="/tagging" method="post">
+                <fieldset>
+                    <legend>Create a new GeoTag</legend>
+                    <label for="tagging_latitude_input">Latitude:</label>
+                    <input id="tagging_latitude_input" placeholder="49.01514" disabled>
+                    <label for="tagging_longitude_input">Longitude:</label>
+                    <input id="tagging_longitude_input" placeholder = "8.39002" disabled>
+                    <label for="tagging_name_input">Name:</label>
+                    <input id="tagging_name_input" placeholder="e.g. HKA Campus">
+                    <label for="tagging_hashtag_input">Hashtag:</label>
+                    <input id="tagging_hashtag_input" placeholder="e.g. Studium">
+                    <button id="tagging_create_geotag_button" type="submit">Create GeoTag</button>
                 </fieldset>
-
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
@@ -85,17 +48,12 @@ function validate_discovery() {
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post" onsubmit="return validate_discovery()">
-
-                <!-- ... your code here ... -->
-                <fieldset class="discovery_fieldset">
-                    <legend>Search</legend>
-                    <div class="discovery_inputs">
-                        <label>Search term or keywords:</label>
-                        <input type="text" id="discovery_name" placeholder="e.g. HKA">
-                        <input type="submit" value="Search">
-                    </div>
-                    <div class="discovery__spacer"></div>
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+                <fieldset>
+                    <legend>Search for GeoTags</legend>
+                    <label for="discovery_search_input">Search term:</label>
+                    <input id="discovery_search_input" placeholder="e.g. Karlsruhe">
+                    <button id="discovery_search_button" type="submit" onclick="return validate_discovery_form()">Search</button>
                 </fieldset>
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
@@ -120,6 +78,56 @@ function validate_discovery() {
     <footer class="footer">
         <span>(c) 2021/22 HKA_IWI_VSYS</span>
     </footer>
+
+    <script>
+        const tagging_form = document.getElementById("tag-form");
+        const discovery_form = document.getElementById("discoveryFilterForm")
+        tagging_form.addEventListener("submit", function(event) {
+            let name = document.getElementById("tagging_name_input").value;
+            let tag = document.getElementById("tagging_hashtag_input").value;
+            if(name == "") {
+                event.preventDefault();
+                alert("Error: Name cannot be left blank");
+                return;
+            }
+            if(name.length > 10) {
+                event.preventDefault();
+                alert("Error: Name cannot be longer than 10 characters");
+                return;
+            }
+            if(!tag || tag[0] !== "#") {
+                event.preventDefault();
+                alert("Error: Hashtag must begin with the # character");
+                return;
+            }
+            if(tag.length > 11) {
+                event.preventDefault();
+                alert("Error: Hashtag cannot be longer than 10 characters after the # character");
+                return;
+            }
+        });
+
+        discovery_form.addEventListener("submit", function(event) {
+            let search = document.getElementById("discovery_search_input").value;
+            if(search == "") {
+                event.preventDefault();
+                alert("Error: Searchterm cannot be left blank");
+                return;
+            }
+            if(search.length > 10) {
+                event.preventDefault();
+                alert("Error: Searchterm cannot be longer than 10 characters");
+                return;
+            }
+        });
+
+        function validate_discovery_form() {
+            
+            return true;
+        }
+
+    </script>
+
 </body>
 
 </html>
