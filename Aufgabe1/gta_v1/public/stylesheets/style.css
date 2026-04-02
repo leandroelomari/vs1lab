@@ -145,6 +145,7 @@ a {
 .tagging_fieldset {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   margin: 10px;
   padding: 10px;
 }
@@ -176,6 +177,7 @@ a {
 .discovery_inputs {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .discovery__spacer {
@@ -185,9 +187,7 @@ a {
 .discovery__wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin: 10px;
-  padding: 10px;
+  justify-content: space-between;
 }
 
 .discovery__taglist {
@@ -196,7 +196,15 @@ a {
 }
 
 .discovery__results {
-  background-color: lightgray;
+  list-style-type: none;
+}
+
+.discovery__results li {
+  background-color: lightblue;
+  color: blue;
+  border: 1px solid blue;
+  margin: 10px;
+  padding: 10px;
 }
 
 .discovery__map {
