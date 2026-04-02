@@ -125,15 +125,18 @@ a {
 
 
 /* ### TODO ### Styles for Main Component */
+
+/* ... your code here ... */
 .main {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
 
 }
-/* ... your code here ... */
 
 
 /* ### TODO ### Styles for Tagging component */
+
 /* ... your code here ... */
 .main__tagging {
   display: flex;
@@ -228,3 +231,16 @@ a {
 /* ### TODO ### Media Queries */
 
 /* ... your code here ... */
+@media (max-width: 600px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+ .discovery__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
