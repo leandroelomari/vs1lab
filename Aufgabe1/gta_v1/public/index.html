@@ -5,37 +5,8 @@
 <html lang="en">
 
 <script>
-function validate_tag() {
-/* ... your code here ... */
-    let tag_name = document.forms["tag-form"]["tag_name"].value;
-    if (tag_name == "") {
-        alert("name cannot be empty");
-        return false;
-    } else if (tag_name.length > 10) {
-        alert("name cannot be longer than 10 characters");
-        return false;
-    }
-    let tag_tag = document.forms["tag-form"]["tag_tag"].value;
-    if (tag_tag[0] != '#') {
-        alert("tag needs to start with #");
-        return false;
-    } else if (tag_tag.length > 11) { //# + 10
-        alert("tag cannot be longer than 10 characters");
-        return false
-    }
-}
 
-function validate_discovery() {
-/* ... your code here ... */
-    let tag_name = document.forms["discoveryFilterForm"]["discovery_name"].value;
-    if (tag_name == "") {
-        alert("name cannot be empty");
-        return false;
-    } else if (tag_name.length > 10) {
-        alert("name cannot be longer than 10 characters");
-        return false;
-    }
-}
+    
 </script>
 
 <head>
@@ -55,60 +26,68 @@ function validate_discovery() {
         </nav>
     </header>
 
-    <main class="main">
-        <section class="main__tagging tagging">
+    <main class="main row">
+        <section class="main__tagging tagging col-3">
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post" onsubmit="return validate_tag()">
 
                 <!-- ... your code here ... -->
-                <fieldset class="tagging_fieldset">
+                <fieldset>
                     <legend>Add a new GeoTag</legend>
-                    <label>Latitude</label>
-                    <input type="text" id="tag_laditude" placeholder="1234" disabled>
-                    <label>Longitude</label>
-                    <input type="text" id="tag_longitude" placeholder="5678" disabled>
-                    <label>Name</label>
-                    <input type="text" id="tag_name" placeholder="e.g. HKA">
-                    <label>Hashtag</label>
-                    <input type="text" id="tag_tag" placeholder="e.g. #edu">
-                    <input type="submit" value="Add Tag">
-                </fieldset>
 
+                    <label for="tag-latitude">Latitude</label>
+                    <input type="text" id="tag-latitude" name="latitude" value="49.01379" readonly>
+
+                    <label for="tag-longitude">Longitude</label>
+                    <input type="text" id="tag-longitude" name="longitude" value="8.404435" readonly>
+
+                    <label for="tag-name">Name</label>
+                    <input type="text" id="tag-name" name="name" placeholder="z. B. Castle" required maxlength="10" pattern="[A-Za-z]{1,10}">
+
+                    <label for="tag-hashtag">Hashtag</label>
+                    <input type="text" id="tag-hashtag" name="hashtag" placeholder="#sight" maxlength="11" pattern="#[A-Za-z]{1,10}">
+
+                    <button type="submit">Save GeoTag</button>
+                </fieldset>
+                
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
         </section>
 
-        <section class="main__discovery discovery">
+        <section class="main__discovery discovery col-9">
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post" onsubmit="return validate_discovery()">
 
                 <!-- ... your code here ... -->
-                <fieldset class="discovery_fieldset">
+                 <fieldset>
                     <legend>Search</legend>
-                    <div class="discovery_inputs">
-                        <label>Search term or keywords:</label>
-                        <input type="text" id="discovery_name" placeholder="e.g. HKA">
-                        <input type="submit" value="Search">
-                    </div>
-                    <div class="discovery__spacer"></div>
-                </fieldset>
+
+                    <label for="discovery-searchterm">Searchterm</label>
+                    <input type="text" id="discovery-searchterm" name="searchterm" placeholder="z. B. sight">
+
+                    <input type="hidden" id="discovery-latitude" name="latitude" value="49.01379">
+                    <input type="hidden" id="discovery-longitude" name="longitude" value="8.404435">
+
+                    <button type="submit">Search</button>
+                 </fieldset>
+                
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist">
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist col-4">
                     <ul class="discovery__results" id="discoveryResults">
                         <li>Castle (49.01379, 8.404435) #sight</li>
                         <li>IWI (49.01379, 8.390071) #edu</li>
                     </ul>
                 </div>
 
-                <div id="map" class="discovery__map">
+                <div id="map" class="discovery__map col-8">
                     <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
                     <span>Result map</span>
                 </div>
