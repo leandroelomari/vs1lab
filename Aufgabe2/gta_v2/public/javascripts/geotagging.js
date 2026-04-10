@@ -62,7 +62,9 @@ class LocationHelper {
             // Pass the locationHelper object to the callback.
             callback(helper);
         }, (error) => {
-           alert(error.message)
+            const s = error.message + " " + error.code + " " + error;
+            
+           alert(s)
         });
     }
 }
@@ -118,7 +120,16 @@ class MapManager {
  */
 // ... your code here ...
 
+function write_form(location_helper) {
+    document.getElementById("tag_latitude").value = location_helper.latitude;
+    document.getElementById("tag_longitude").value = location_helper.longitude;
+};
+
+function updateLocation() {
+    LocationHelper.findLocation(write_form);
+};
+
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    updateLocation();
 });
