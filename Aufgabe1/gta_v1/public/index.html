@@ -27,7 +27,7 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
-                <fieldset>
+                <fieldset class="tagging__fieldset">
                     <legend>Create a new GeoTag</legend>
                     <label for="tagging_latitude_input">Latitude:</label>
                     <input id="tagging_latitude_input" placeholder="49.01514" disabled>
@@ -49,7 +49,7 @@
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-                <fieldset>
+                <fieldset class="discovery__fieldset">
                     <legend>Search for GeoTags</legend>
                     <label for="discovery_search_input">Search term:</label>
                     <input id="discovery_search_input" placeholder="e.g. Karlsruhe">
@@ -121,10 +121,6 @@
             }
         });
 
-        function validate_discovery_form() {
-            
-            return true;
-        }
 
     </script>
 

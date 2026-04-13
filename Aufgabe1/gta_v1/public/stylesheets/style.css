@@ -47,7 +47,10 @@ a {
 /* ### TODO ### Styles for other HTML elements */
 
 /* ... your code here ... */
-
+.header__image {
+  height: 3%;
+  width: 3%;
+}
 
 /* Grid styles (no changes required) */
 
@@ -109,29 +112,195 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
+/* Allgemeine Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
 
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+}
 
-/* ### TODO ### Styles for Main Component */
+.header__image {
+    width: 40px;
+    height: 40px;
+}
 
-/* ... your code here ... */
+.header__title {
+    margin: 0;
+    font-size: 1.8rem;
+}
 
+.header__navigation a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+}
 
-/* ### TODO ### Styles for Tagging component */
+.header__navigation a:hover {
+    text-decoration: underline;
+}
 
-/* ... your code here ... */
+/* MAIN */
+.main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
+/* TAGGING SECTION */
+.main__tagging {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
-/* ### TODO ### Styles for Discovery component */
+.tagging__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+}
 
-/* ... your code here ... */
+.tagging__fieldset input,
+.tagging__fieldset button {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
+.tagging__fieldset button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
 
-/* ### TODO ### Styles for Footer Component */
+.tagging__fieldset button:hover {
+    background-color: #2980b9;
+}
 
-/* ... your code here ... */
+/* DISCOVERY SECTION */
+.main__discovery {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
+.discovery__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.discovery__fieldset input,
+.discovery__fieldset button {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.discovery__fieldset button {
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.discovery__fieldset button:hover {
+    background-color: #1e8449;
+}
+
+/* WRAPPER: LIST + MAP nebeneinander */
+.discovery__wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* TAGLIST */
+.discovery__taglist {
+    flex: 1;
+    min-width: 250px;
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.discovery__results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.discovery__results li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* MAP */
+.discovery__map {
+    flex: 2;
+    min-width: 300px;
+    text-align: center;
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.discovery__map img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.discovery__map span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 30px;
+}
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media (max-width: 600px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+ .discovery__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
