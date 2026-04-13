@@ -121,8 +121,10 @@ class MapManager {
 // ... your code here ...
 
 function write_form(location_helper) {
-    document.getElementById("tag_latitude").value = location_helper.latitude;
-    document.getElementById("tag_longitude").value = location_helper.longitude;
+    document.getElementById("tag-latitude").value = location_helper.latitude;
+    document.getElementById("tag-longitude").value = location_helper.longitude;
+    document.getElementById("discovery-latitude").value = location_helper.longitude;
+    document.getElementById("discovery-longitude").value = location_helper.longitude;
 };
 
 function updateLocation() {
