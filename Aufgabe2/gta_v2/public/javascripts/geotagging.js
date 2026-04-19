@@ -120,15 +120,27 @@ class MapManager {
  */
 // ... your code here ...
 
-function write_form(location_helper) {
-    document.getElementById("tag-latitude").value = location_helper.latitude;
-    document.getElementById("tag-longitude").value = location_helper.longitude;
-    document.getElementById("discovery-latitude").value = location_helper.longitude;
-    document.getElementById("discovery-longitude").value = location_helper.longitude;
+function use_location(location_helper) {
+    lat = location_helper.latitude;
+    long = location_helper.longitude;
+    document.getElementById("tag-latitude").value = lat;
+    document.getElementById("tag-longitude").value = long;
+    document.getElementById("discovery-latitude").value = lat;
+    document.getElementById("discovery-longitude").value = long;
+
+    //map
+    map = new MapManager();
+    map.initMap(lat, long);
+    map.updateMarkers(lat, long);
+    
+    p = document.getElementById("p");
+    img = document.getElementById("mapView");
+    img.remove();
+    p.remove();
 };
 
 function updateLocation() {
-    LocationHelper.findLocation(write_form);
+    LocationHelper.findLocation(use_location);
 };
 
 // Wait for the page to fully load its DOM content, then call updateLocation
