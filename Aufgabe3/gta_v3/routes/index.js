@@ -34,6 +34,8 @@ const GeoTagExamples = require('../models/geotag-examples');
 const store = new GeoTagStore();
 GeoTagExamples.populate(store);
 
+const tag_radius = 30;
+
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -67,8 +69,8 @@ router.post('/tagging', (req, res) => {
   const { latitude, longitude, name, hashtag } = req.body;
   const newTag = new GeoTag(parseFloat(latitude), parseFloat(longitude), name, hashtag);
   store.addGeoTag(newTag);
-  const nearby = store.getNearbyGeoTags(newTag, 100);
-  res.render('index', { taglist: nearby });
+  const nearby = store.getNearbyGeoTags(newTag, tag_radius);
+  res.render('index', { taglist: nearby, latitude, longitude });
 })
 
 /**
@@ -93,11 +95,11 @@ router.post('/discovery', (req, res) => {
   const tempTag = new GeoTag(parseFloat(dlatitude), parseFloat(dlongitude), "temp");
   let result_list;
   if(!keyword) {
-    result_list = store.getNearbyGeoTags(tempTag, 100);
+    result_list = store.getNearbyGeoTags(tempTag, tag_radius);
   } else {
-    result_list = store.searchNearbyGeoTags(tempTag, keyword, 100);
+    result_list = store.searchNearbyGeoTags(tempTag, keyword, tag_radius);
   }
-  res.render('index', {taglist: result_list});
+  res.render('index', { taglist: result_list, latitude: dlatitude, longitude: dlongitude });
 });
 
 

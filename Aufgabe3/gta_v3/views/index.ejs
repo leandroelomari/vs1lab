@@ -38,9 +38,9 @@
                 <fieldset class="tagging__fieldset">
                     <legend>Create a new GeoTag</legend>
                     <label for="tagging_latitude_input">Latitude:</label>
-                    <input id="tagging_latitude_input" name="latitude" placeholder="1234" readonly>
+                    <input id="tagging_latitude_input" name="latitude" value="<%= locals.latitude || '' %>" readonly>
                     <label for="tagging_longitude_input">Longitude:</label>
-                    <input id="tagging_longitude_input" name="longitude" placeholder = "1234" readonly>
+                    <input id="tagging_longitude_input" name="longitude" value="<%= locals.longitude || '' %>" readonly>
                     <label for="tagging_name_input">Name:</label>
                     <input id="tagging_name_input" name="name" placeholder="e.g. HKA Campus" required maxlength="10" pattern="[A-Za-z]{1,10}">
                     <label for="tagging_hashtag_input">Hashtag:</label>
@@ -61,8 +61,8 @@
                     <legend>Search for GeoTags</legend>
                     <label for="discovery_search_input">Search term:</label>
                     <input id="discovery_search_input" name="keyword" placeholder="e.g. Karlsruhe">
-                    <input type="hidden" id="discovery_longitude_input" name="dlongitude" readonly>
-                    <input type="hidden" id="discovery_latitude_input" name="dlatitude" readonly>
+                    <input type="hidden" id="discovery_longitude_input" name="dlongitude" value="<%= locals.longitude || '' %>" readonly>
+                    <input type="hidden" id="discovery_latitude_input" name="dlatitude" value="<%= locals.latitude || '' %>" readonly>
                     <button id="discovery_search_button" type="submit">Search</button>
                 </fieldset>
             </form>

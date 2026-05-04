@@ -48,15 +48,12 @@ class InMemoryGeoTagStore {
     }
 
     #distance(loc, tag) {
-        const R = 6371;
+        //Haversine Formula
+        const earth_radius = 6371;
         const dLat = this.#toRad(tag.latitude - loc.latitude);
         const dLon = this.#toRad(tag.longitude - loc.longitude);
-        const a =
-            Math.sin(dLat / 2) ** 2 +
-            Math.cos(this.#toRad(loc.latitude)) *
-            Math.cos(this.#toRad(tag.latitude)) *
-            Math.sin(dLon / 2) ** 2;
-        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const a = Math.sin(dLat / 2) ** 2 + Math.cos(this.#toRad(loc.latitude)) * Math.cos(this.#toRad(tag.latitude)) * Math.sin(dLon / 2) ** 2;
+        return earth_radius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 
     #toRad(deg) {

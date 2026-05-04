@@ -9,10 +9,23 @@
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
 
-tlongitude = document.getElementById("tagging_longitude_input");
-tlatitude = document.getElementById("tagging_latitude_input");
-dlongitude = document.getElementById("discovery_longitude_input");
-dlatitude = document.getElementById("discovery_latitude_input");
+let tlongitude;
+let tlatitude;
+let dlongitude;
+let dlatitude;
+
+// Wait for the page to fully load its DOM content, then call updateLocation
+document.addEventListener("DOMContentLoaded", () => {
+    tlongitude = document.getElementById("tagging_longitude_input");
+    tlatitude = document.getElementById("tagging_latitude_input");
+    dlongitude = document.getElementById("discovery_longitude_input");
+    dlatitude = document.getElementById("discovery_latitude_input");
+
+    if(!tlongitude.value && !tlatitude.value) {
+        alert("Updating Location");
+        LocationHelper.findLocation(updateLocation);
+    }
+});
 
 /**
  * TODO: 'updateLocation'
@@ -20,9 +33,9 @@ dlatitude = document.getElementById("discovery_latitude_input");
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
-function updateLocaltion(location) {
-    long = location.longitude;
-    lat = location.latitude;
+function updateLocation(location) {
+    const long = location.longitude;
+    const lat = location.latitude;
     
     tlongitude.value = long;
     tlatitude.value = lat;
@@ -30,7 +43,7 @@ function updateLocaltion(location) {
     dlatitude.value = lat;
 
 
-    mapManager = new MapManager();
+    const mapManager = new MapManager();
     mapManager.initMap(location.latitude, location.longitude);
 
     const taglist_json = document.getElementById("map").dataset.tags;
@@ -39,17 +52,9 @@ function updateLocaltion(location) {
 
     mapManager.updateMarkers(location.latitude, location.longitude, taglist);
 
-    image = document.getElementById("mapView");
+    const image = document.getElementById("mapView");
     image.remove();
 
-    placeholder = document.getElementById("mapPlaceholder");
+    const placeholder = document.getElementById("mapPlaceholder");
     placeholder.remove();
 }
-
-// Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", () => {
-    if(!tlongitude.value || !tlatitude.value) {
-        LocationHelper.findLocation(updateLocaltion);
-    }
-    //alert("Please change the script 'geotagging.js'");
-});
